@@ -12,11 +12,6 @@
  * @version   CVS: $Id: OpeningFunctionBraceBsdAllmanSniff.php,v 1.8
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-
-
-CONST TEST_CONSTANTA = 'asd';
-$user_name = 'Igor';
-
 /**
  * Description.
  *
