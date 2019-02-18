@@ -22,8 +22,8 @@
  */
 function task1($strings, $glue = false)
 {
+    $row = [];
     if (!empty($strings)) {
-        $row = [];
         foreach ($strings as $string) {
             $row[] = '<p>' . $string . '</p>';
         }
@@ -31,7 +31,7 @@ function task1($strings, $glue = false)
     if ($glue) {
         return implode(' ', $row);
     } else {
-        echo implode(' ', $row);
+        echo implode('', $row);
     }
 }
 
@@ -54,7 +54,14 @@ function task2()
          обозначающая арифметическое действие!';
     }
 }
-
+/**
+ * Description.
+ *
+ * @param number $number        Number for col
+ * @param number $multiplicator Number for row
+ *
+ * @return void
+ */
 function task3($number, $multiplicator)
 {
     if (!is_float($number) && !is_float($multiplicator)) {
@@ -77,5 +84,56 @@ function task3($number, $multiplicator)
         echo "</table>";
     } else {
         echo 'Введите целые числа';
+    }
+}
+/**
+ * Description.
+ *
+ * @return void
+ */
+function task4()
+{
+    echo 'Текущаяя дата: ' . date('d.m.Y G:i') . '<br>';
+    echo '24.02.2016 00:00:00 unixtime :  ' .
+        mktime('00', '00', '00', '02', '24', '2016');
+}
+/**
+ * Description.
+ *
+ * @return void
+ */
+function task5()
+{
+    $first_row = 'Карл у Клары украл Кораллы';
+    $second_row = 'Две бутылки лимонада';
+    echo str_replace('К', '', $first_row).'<br>';
+    echo str_replace('Две', 'Три', $second_row).'<br>';
+}
+/**
+ * Description.
+ *
+ * @return void
+ */
+function task6()
+{
+    $new_file = fopen("test.txt", "w");
+    $file_content = 'Hello again!';
+    fwrite($new_file, $file_content);
+    fclose($new_file);
+    getFileContetn('test.txt');
+}
+/**
+ * Description.
+ *
+ * @param string $file_name File name for open
+ *
+ * @return void
+ */
+function getFileContetn($file_name)
+{
+    if ($file_content = file_get_contents($file_name)) {
+        echo $file_content;
+    } else {
+        echo 'Введите имя существующего файла.';
     }
 }

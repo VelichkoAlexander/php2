@@ -18,3 +18,6 @@ require_once 'src/functions.php';
 task1(['hi', 'i\'m', 'first', 'function'], false);
 task2('+', 1, 2, 3, 5.2);
 task3(4, 3);
+task4();
+task5();
+task6();
