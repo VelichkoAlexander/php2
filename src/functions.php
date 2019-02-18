@@ -15,22 +15,23 @@
 /**
  * Description.
  *
- * @param array $array array of string
- * @param bool  $mark  check for returning
+ * @param array $strings array of string
+ * @param bool  $glue    check for returning
  *
  * @return string
  */
-function task1($array, $mark = false)
+function task1($strings, $glue = false)
 {
-    if (!empty($array)) {
-        $string = '';
-        foreach ($array as $item) {
-            $string .= '<p>' . $item . '</p>';
+    if (!empty($strings)) {
+        $row = [];
+        foreach ($strings as $string) {
+            $row[] = '<p>' . $string . '</p>';
         }
-        if ($mark) {
-            return $string;
-        }
-        echo $string;
+    }
+    if ($glue) {
+        return implode(' ', $row);
+    } else {
+        echo implode(' ', $row);
     }
 }
 
@@ -42,34 +43,20 @@ function task1($array, $mark = false)
 function task2()
 {
     $numbers = func_get_args();
-    $firstString = array_shift($numbers);
-    if ($firstString) {
-        switch ($firstString) {
-        case '+':
-            echo array_reduce(
-                $numbers, function ($carry, $item) {
-                    $carry += $item;
-                    return $carry;
-                }
-            );
-            break;
-        case '-':
-            echo array_reduce(
-                $numbers, function ($carry, $item) {
-                        $carry -= $item;
-                        return $carry;
-                }
-            );
-            break;
-        default:
-            echo 'Неверные параметры!';
-            break;
-        }
-
+    $valid_operator = ['+', '-', '/', '*'];
+    $operator = array_shift($numbers);
+    if ($operator && in_array($operator, $valid_operator)) {
+        $row = implode($operator, $numbers);
+        $answer = eval("return $row;");
+        echo $row.'='. $answer;
+    } else {
+        echo 'Первым аргументом обязательно должна быть строка,
+         обозначающая арифметическое действие!';
     }
 }
 
-function task3($number, $multiplicator) {
+function task3($number, $multiplicator)
+{
     if (!is_float($number) && !is_float($multiplicator)) {
         echo "<table border =\"1\" style='border-collapse: collapse'>";
         echo "<tr>";
@@ -83,7 +70,7 @@ function task3($number, $multiplicator) {
             echo "<td>$row</td>";
             for ($col = 1; $col <= $number; $col++) {
                 $value_of_cell = $col * $row;
-                    echo "<td>$value_of_cell</td>";
+                echo "<td>$value_of_cell</td>";
             }
             echo "</tr>";
         }
