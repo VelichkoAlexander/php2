@@ -17,3 +17,4 @@ require_once 'src/functions.php';
 
 task1(['hi', 'i\'m', 'first', 'function'], true);
 task2('+', 1.1, 2, 3, 5.9);
+task3(4, 3);

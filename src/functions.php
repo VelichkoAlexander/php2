@@ -73,3 +73,27 @@ function task2()
 
     }
 }
+
+function task3($number, $multiplicator) {
+    if (!is_float($number) && !is_float($multiplicator)) {
+        echo "<table border =\"1\" style='border-collapse: collapse'>";
+        echo "<tr>";
+        echo "<td></td>";
+        for ($col = 1; $col <= $number; $col++) {
+            echo "<td>$col</td>";
+        }
+        echo "</tr>";
+        for ($row = 1; $row <= $multiplicator; $row++) {
+            echo "<tr>";
+            echo "<td>$row</td>";
+            for ($col = 1; $col <= $number; $col++) {
+                $value_of_cell = $col * $row;
+                    echo "<td>$value_of_cell</td>";
+            }
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo 'Введите целые числа';
+    }
+}
