@@ -25,14 +25,14 @@ function task1($strings, $glue = false)
     $row = [];
     if (!empty($strings)) {
         foreach ($strings as $string) {
-            $row[] = '<p>' . $string . '</p>';
+            if ($glue) {
+                $row[] = $string;
+            } else {
+                $row[] = '<p>' . $string . '</p>';
+            }
         }
     }
-    if ($glue) {
-        return implode(' ', $row);
-    } else {
-        echo implode('', $row);
-    }
+    return implode(' ', $row);
 }
 
 /**
@@ -57,25 +57,25 @@ function task2()
 /**
  * Description.
  *
- * @param number $number        Number for col
- * @param number $multiplicator Number for row
+ * @param number $rows        Number for col
+ * @param number $cols Number for row
  *
  * @return void
  */
-function task3($number, $multiplicator)
+function task3($rows, $cols)
 {
-    if (!is_float($number) && !is_float($multiplicator)) {
+    if (!is_float($rows) && !is_int($cols)) {
         echo "<table border =\"1\" style='border-collapse: collapse'>";
         echo "<tr>";
         echo "<td></td>";
-        for ($col = 1; $col <= $number; $col++) {
+        for ($col = 1; $col <= $cols; $col++) {
             echo "<td>$col</td>";
         }
         echo "</tr>";
-        for ($row = 1; $row <= $multiplicator; $row++) {
+        for ($row = 1; $row <= $rows; $row++) {
             echo "<tr>";
             echo "<td>$row</td>";
-            for ($col = 1; $col <= $number; $col++) {
+            for ($col = 1; $col <= $rows; $col++) {
                 $value_of_cell = $col * $row;
                 echo "<td>$value_of_cell</td>";
             }
@@ -114,26 +114,9 @@ function task5()
  *
  * @return void
  */
-function task6()
+function task6($file_name)
 {
-    $new_file = fopen("test.txt", "w");
     $file_content = 'Hello again!';
-    fwrite($new_file, $file_content);
-    fclose($new_file);
-    getFileContetn('test.txt');
-}
-/**
- * Description.
- *
- * @param string $file_name File name for open
- *
- * @return void
- */
-function getFileContetn($file_name)
-{
-    if ($file_content = file_get_contents($file_name)) {
-        echo $file_content;
-    } else {
-        echo 'Введите имя существующего файла.';
-    }
+    file_put_contents($file_name, $file_content);
+    echo file_get_contents($file_name);
 }
